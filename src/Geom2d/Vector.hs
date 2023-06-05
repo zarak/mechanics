@@ -39,3 +39,9 @@ normalized vector = scaledBy (1.0 / norm vector) vector
 
 withLength :: R -> Vector -> Vector
 withLength length = scaledBy length . normalized
+
+dot :: Vector -> Vector -> R
+dot v1 v2 = v1.u * v2.u + v1.v + v2.v
+
+projectionOver :: Vector -> Vector -> R
+projectionOver vector = dot vector . normalized
