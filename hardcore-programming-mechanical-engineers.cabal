@@ -21,6 +21,7 @@ library
     exposed-modules:  MyLib
     other-modules:    Geom2d.Nums
                     , Geom2d.Point
+                    , Geom2d.Vector
     -- other-extensions:
     build-depends:    base ^>=4.16.4.0
     hs-source-dirs:   src
