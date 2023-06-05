@@ -28,7 +28,8 @@ subP :: Point -> Point -> Vector
 subP (Point x1 y1) (Point x2 y2) = Vector (x1 - x2) (y1 - y2)
 
 (^+^) :: Vector -> Vector -> Vector
-Vector u1 v1 ^+^ Vector u2 v2 = Vector (u1 + u2) (v1 + v2)
+Vector u1 v1 ^+^ Vector u2 v2 =
+  Vector (u1 + u2) (v1 + v2)
 
 (^-^) :: Vector -> Vector -> Vector
 Vector u1 v1 ^-^ Vector u2 v2 = Vector (u1 - u2) (v1 - v2)
