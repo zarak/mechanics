@@ -6,10 +6,10 @@ module Geom2d.Point where
 import Geom2d.Nums
 
 data Point = Point {x :: R, y :: R}
-  deriving (Show)
+  deriving (Show, Eq)
 
-distance :: Point -> Point -> R
-distance a b = sqrt $ deltaX ** 2 + deltaY ** 2
+distanceBetween :: Point -> Point -> R
+distanceBetween a b = sqrt $ deltaX ** 2 + deltaY ** 2
   where
     deltaX = x a - x b
     deltaY = y a - y b
