@@ -6,7 +6,12 @@ module Geom2d.Point where
 import Geom2d.Nums
 
 data Point = Point {x :: R, y :: R}
-  deriving (Show, Eq)
+  deriving (Show)
+
+instance Eq Point where
+  p1 == p2 =
+    areCloseEnough p1.x p2.y 1e-10
+      && areCloseEnough p1.x p2.y 1e-10
 
 distanceBetween :: Point -> Point -> R
 distanceBetween a b = sqrt $ deltaX ** 2 + deltaY ** 2

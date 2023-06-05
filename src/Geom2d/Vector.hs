@@ -9,7 +9,12 @@ import Numeric.IEEE
 import Prelude hiding (length)
 
 data Vector = Vector {u :: R, v :: R}
-  deriving (Show, Eq)
+  deriving (Show)
+
+instance Eq Vector where
+  v1 == v2 =
+    areCloseEnough v1.u v2.u 1e-10
+      && areCloseEnough v1.v v2.v 1e-10
 
 subP :: Point -> Point -> Vector
 subP (Point x1 y1) (Point x2 y2) = Vector (x1 - y1) (x2 - y2)
