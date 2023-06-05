@@ -9,7 +9,15 @@ import Numeric.IEEE
 import Prelude hiding (length)
 
 data Vector = Vector {u :: R, v :: R}
-  deriving (Show)
+
+instance Show Vector where
+  show vector =
+    "("
+      <> show vector.u
+      <> ", "
+      <> show vector.v
+      <> ") with norm "
+      <> show (norm vector)
 
 instance Eq Vector where
   v1 == v2 =
