@@ -19,9 +19,10 @@ common warnings
 library
     import:           warnings
     exposed-modules:  MyLib
-    other-modules:    Geom2d.Nums
-                    , Geom2d.Point
+                    , Geom2d.Point 
                     , Geom2d.Vector
+                    , Geom2d.Nums
+    -- other-modules:
     -- other-extensions:
     build-depends:    base ^>=4.16.4.0
                     , ieee754
@@ -43,11 +44,15 @@ executable hardcore-programming-mechanical-engineers
 test-suite hardcore-programming-mechanical-engineers-test
     import:           warnings
     default-language: GHC2021
-    -- other-modules:
+    other-modules:    Geom2d.PointSpec
+                    , Geom2d.VectorSpec
     -- other-extensions:
     type:             exitcode-stdio-1.0
     hs-source-dirs:   test
-    main-is:          Main.hs
+    main-is:          Spec.hs
     build-depends:
         base ^>=4.16.4.0,
-        hardcore-programming-mechanical-engineers
+        hardcore-programming-mechanical-engineers,
+        hspec,
+        hspec-contrib,
+        QuickCheck

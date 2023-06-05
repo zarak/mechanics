@@ -10,8 +10,8 @@ data Point = Point {x :: R, y :: R}
 
 instance Eq Point where
   p1 == p2 =
-    areCloseEnough p1.x p2.x 1e-10
-      && areCloseEnough p1.y p2.y 1e-10
+    areCloseEnough 1e-10 p1.x p2.x
+      && areCloseEnough 1e-10 p1.y p2.y
 
 distanceBetween :: Point -> Point -> R
 distanceBetween a b = sqrt $ deltaX ** 2 + deltaY ** 2

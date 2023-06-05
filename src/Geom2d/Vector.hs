@@ -21,8 +21,8 @@ instance Show Vector where
 
 instance Eq Vector where
   v1 == v2 =
-    areCloseEnough v1.u v2.u 1e-10
-      && areCloseEnough v1.v v2.v 1e-10
+    areCloseEnough 1e-10 v1.u v2.u
+      && areCloseEnough 1e-10 v1.v v2.v
 
 subP :: Point -> Point -> Vector
 subP (Point x1 y1) (Point x2 y2) = Vector (x1 - y1) (x2 - y2)
