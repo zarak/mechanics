@@ -55,4 +55,6 @@ test-suite hardcore-programming-mechanical-engineers-test
         hardcore-programming-mechanical-engineers,
         hspec,
         hspec-contrib,
-        QuickCheck
+        QuickCheck,
+        test-invariant
+

@@ -4,6 +4,13 @@ module Geom2d.VectorSpec (spec) where
 import Geom2d.Vector
 import Test.Hspec
 
+-- import Test.Hspec.QuickCheck
+-- import Test.Invariant
+-- import Test.QuickCheck
+
+-- instance Arbitrary Vector where
+--   arbitrary = genVector
+
 spec :: Spec
 spec = do
   describe "^+^" $ do
@@ -12,3 +19,6 @@ spec = do
           u = Vector 4 6
           expected = Vector 5 8
       u ^+^ v `shouldBe` expected
+
+-- prop "is commutative" $ do
+--   commutative (^+^)
