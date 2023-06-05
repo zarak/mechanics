@@ -8,6 +8,9 @@ import Geom2d.Nums
 data Point = Point {x :: R, y :: R}
   deriving (Show)
 
+data Vector = Vector {u :: R, v :: R}
+  deriving (Show)
+
 distance :: Point -> Point -> R
 distance a b = sqrt $ deltaX ** 2 + deltaY ** 2
   where
@@ -22,5 +25,5 @@ test = do
 (^+^) :: Point -> Point -> Point
 Point x1 y1 ^+^ Point x2 y2 = Point (x1 + y1) (x2 + y2)
 
-(^-^) :: Point -> Point -> Point
-Point x1 y1 ^-^ Point x2 y2 = Point (x1 - y1) (x2 - y2)
+(^-^) :: Point -> Point -> Vector
+Point x1 y1 ^-^ Point x2 y2 = Vector (x1 - y1) (x2 - y2)
