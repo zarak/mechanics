@@ -77,11 +77,22 @@ v1 >| v2 = angleBetween v1 v2
 
 infix 7 >|
 
-rotatedRadians :: Vector -> R -> Vector
-rotatedRadians vector radians =
-  Vector
-    (vector.u * c - vector.v * s)
-    (vector.u * s + vector.v * c)
-  where
-    c = cos radians
-    s = sin radians
+rotatedRadians :: R -> Vector -> Vector
+rotatedRadians radians vector =
+  let c = cos radians
+      s = sin radians
+   in Vector
+        (vector.u * c - vector.v * s)
+        (vector.u * s + vector.v * c)
+
+perpendicular :: Vector -> Vector
+perpendicular (Vector v u) = Vector (-v) u
+
+opposite :: Vector -> Vector
+opposite = scaledBy (-1)
+
+sine :: Vector -> R
+sine vector = vector.v / norm vector
+
+cosine :: Vector -> R
+cosine vector = vector.u / norm vector
