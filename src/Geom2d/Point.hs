@@ -22,8 +22,14 @@ test = do
   let p = Point 1 2
   print $ p.x
 
-(^+^) :: Point -> Point -> Point
-Point x1 y1 ^+^ Point x2 y2 = Point (x1 + y1) (x2 + y2)
+addP :: Point -> Point -> Point
+addP (Point x1 y1) (Point x2 y2) = Point (x1 + y1) (x2 + y2)
 
-(^-^) :: Point -> Point -> Vector
-Point x1 y1 ^-^ Point x2 y2 = Vector (x1 - y1) (x2 - y2)
+subP :: Point -> Point -> Vector
+subP (Point x1 y1) (Point x2 y2) = Vector (x1 - y1) (x2 - y2)
+
+(^+^) :: Vector -> Vector -> Vector
+Vector x1 y1 ^+^ Vector x2 y2 = Vector (x1 + y1) (x2 + y2)
+
+(^-^) :: Vector -> Vector -> Vector
+Vector x1 y1 ^-^ Vector x2 y2 = Vector (x1 - y1) (x2 - y2)
