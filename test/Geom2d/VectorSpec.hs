@@ -1,6 +1,6 @@
 module Geom2d.VectorSpec (spec) where
 
--- import Geom2d.Nums (areCloseEnough)
+import Geom2d.Nums (isCloseToZero)
 import Geom2d.Vector
 import Test.Hspec
 import Test.Hspec.QuickCheck
@@ -41,3 +41,17 @@ spec = do
     it "computes the cross product between two vectors" $ do
       let expected = (-2)
       cross u v `shouldBe` expected
+  describe "isParallelTo" $ do
+    it "checks whether two vectors are parallel" $ do
+      u `shouldNotSatisfy` isParallelTo v
+    prop "is always true for a vector with itself" $ do
+      let propParallelToSelf (VectorWrapper vec) = vec `isParallelTo` vec
+      propParallelToSelf
+  describe "isPerpendicularTo" $ do
+    let vec = Vector (-2) 1
+    it "checks whether two vectors are perpendicular" $ do
+      u `shouldSatisfy` isPerpendicularTo vec
+    it "is true for vectors with a dot product of zero" $ do
+      vec `dot` u `shouldSatisfy` isCloseToZero
+    it "checks whether two vectors are perpendicular" $ do
+      u `shouldNotSatisfy` isPerpendicularTo v
