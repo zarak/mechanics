@@ -1,3 +1,5 @@
+{-# LANGUAGE OverloadedRecordDot #-}
+
 module Geom2d.SegmentSpec (spec) where
 
 import Geom2d.Point
@@ -29,3 +31,18 @@ spec = do
     it "gets the midpoint of a segment" $ do
       let expected = Point 200 200
       middle segment `shouldBe` expected
+  describe "closestPoint" $ do
+    context "when the outside point is unaligned with the segment" $ do
+      it "is the start of the segment" $ do
+        let p = Point 500 20
+            expected = segment.start
+        closestPoint p segment `shouldBe` expected
+      it "is the end of the segment" $ do
+        let p = Point 20 500
+            expected = segment.end
+        closestPoint p segment `shouldBe` expected
+    context "when the outside point is aligned with the segment" $ do
+      it "is the middle of the segment" $ do
+        let p = Point 250 250
+            expected = Point 200 200
+        closestPoint p segment `shouldBe` expected
