@@ -18,3 +18,6 @@ directionVector segment = mkVectorBetween segment.start segment.end
 
 directionVersor :: Segment -> Vector
 directionVersor segment = mkVersorBetween segment.start segment.end
+
+normalVersor :: Segment -> Vector
+normalVersor = perpendicular . directionVersor
