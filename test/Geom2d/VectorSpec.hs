@@ -14,17 +14,20 @@ instance Arbitrary VectorWrapper where
     u <- arbitrary
     VectorWrapper . Vector u <$> arbitrary
 
-commutativeWrapper :: VectorWrapper -> VectorWrapper -> Bool
-commutativeWrapper (VectorWrapper v1) (VectorWrapper v2) = commutative (^+^) v1 v2
-
 spec :: Spec
 spec = do
+  let u = Vector 1 2
+      v = Vector 4 6
+
   describe "^+^" $ do
     it "adds the corresponding components of two vectors" $ do
-      let v = Vector 1 2
-          u = Vector 4 6
-          expected = Vector 5 8
+      let expected = Vector 5 8
       u ^+^ v `shouldBe` expected
 
-  prop "is commutative" $ do
-    commutativeWrapper
+    prop "is commutative" $ do
+      let commutativeWrapper (VectorWrapper v1) (VectorWrapper v2) = commutative (^+^) v1 v2
+      commutativeWrapper
+  describe "^-^" $ do
+    it "subtracts the corresponding components of two vectors" $ do
+      let expected = Vector (-3) (-4)
+      u ^-^ v `shouldBe` expected
