@@ -14,7 +14,27 @@ data Segment = Segment
   { start :: Point,
     end :: Point
   }
-  deriving (Show)
+  deriving (Eq)
+
+instance Show Segment where
+  show segment =
+    "Segment\n"
+      <> startCoords
+      <> "  o----------o  "
+      <> endCoords
+    where
+      startCoords =
+        "("
+          <> show segment.start.x
+          <> ", "
+          <> show segment.start.y
+          <> ")"
+      endCoords =
+        "("
+          <> show segment.end.x
+          <> ", "
+          <> show segment.end.y
+          <> ")"
 
 directionVector :: Segment -> Vector
 directionVector segment = mkVectorBetween segment.start segment.end
