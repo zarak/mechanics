@@ -13,8 +13,8 @@ instance Eq Point where
     areCloseEnough 1e-10 p1.x p2.x
       && areCloseEnough 1e-10 p1.y p2.y
 
-distanceBetween :: Point -> Point -> R
-distanceBetween a b = sqrt $ deltaX ** 2 + deltaY ** 2
+distanceTo :: Point -> Point -> R
+distanceTo a b = sqrt $ deltaX ** 2 + deltaY ** 2
   where
     deltaX = x a - x b
     deltaY = y a - y b

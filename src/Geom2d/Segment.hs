@@ -3,9 +3,11 @@
 
 module Geom2d.Segment where
 
+import Geom2d.Nums (R)
 import Geom2d.Point
 import Geom2d.Vector
 import Geom2d.Vectors
+import Prelude hiding (length)
 
 data Segment = Segment
   { start :: Point,
@@ -21,3 +23,6 @@ directionVersor segment = mkVersorBetween segment.start segment.end
 
 normalVersor :: Segment -> Vector
 normalVersor = perpendicular . directionVersor
+
+length :: Segment -> R
+length segment = segment.start `distanceTo` segment.end

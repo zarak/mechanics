@@ -6,9 +6,9 @@ import Test.Hspec
 
 spec :: Spec
 spec = do
-  describe "distanceBetween" $ do
+  describe "distanceTo" $ do
     it "computes the distance between two points" $ do
       let p = Point 1 2
           q = Point 4 6
           expected = 5
-      distanceBetween p q `shouldSatisfy` areCloseEnough 1e-10 expected
+      distanceTo p q `shouldSatisfy` areCloseEnough 1e-10 expected
