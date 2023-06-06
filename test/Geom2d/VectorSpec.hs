@@ -23,7 +23,6 @@ spec = do
     it "adds the corresponding components of two vectors" $ do
       let expected = Vector 5 8
       u ^+^ v `shouldBe` expected
-
     prop "is commutative" $ do
       let commutativeWrapper (VectorWrapper v1) (VectorWrapper v2) = commutative (^+^) v1 v2
       commutativeWrapper
@@ -31,3 +30,14 @@ spec = do
     it "subtracts the corresponding components of two vectors" $ do
       let expected = Vector (-3) (-4)
       u ^-^ v `shouldBe` expected
+  describe "dot" $ do
+    it "computes the dot product between two vectors" $ do
+      let expected = 16
+      dot u v `shouldBe` expected
+    prop "is commutative" $ do
+      let commutativeWrapper (VectorWrapper v1) (VectorWrapper v2) = commutative dot v1 v2
+      commutativeWrapper
+  describe "cross" $ do
+    it "computes the cross product between two vectors" $ do
+      let expected = (-2)
+      cross u v `shouldBe` expected
