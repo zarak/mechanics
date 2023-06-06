@@ -49,3 +49,17 @@ closestPoint p segment
 
 distanceSegmentToPoint :: Point -> Segment -> R
 distanceSegmentToPoint p = distanceTo p . closestPoint p
+
+intersectionWith :: Segment -> Segment -> Maybe Point
+intersectionWith s1 s2
+  | d1 `isParallelTo` d2 = Nothing
+  | otherwise = case (mkTParameter t1, mkTParameter t2) of
+      (Just t1', Just _) -> pure $ pointAt t1' s1
+      (_, _) -> Nothing
+  where
+    d1 = directionVector s1
+    d2 = directionVector s2
+    crossProd = d1 `cross` d2
+    delta = s2.start `subP` s1.start
+    t1 = (delta.u * d2.v - delta.v * d2.u) / crossProd
+    t2 = (delta.u * d1.v - delta.v * d1.u) / crossProd

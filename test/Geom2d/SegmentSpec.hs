@@ -22,10 +22,10 @@ spec = do
   describe "pointAt" $ do
     it "gives a validation error if t is not in the range [0, 1]" $ do
       let t = mkTParameter 1.2
-      t `shouldBe` tError
+      t `shouldBe` Nothing
     it "creates a TParameter type if t is in the range [0, 1]" $ do
       let t = case mkTParameter 0.2 of
-            Right a -> a
+            Just a -> a
             _ -> error "Invalid 't' parameter is not in range"
       unTParameter t `shouldSatisfy` (\t' -> 0 <= t' && t' <= 1)
     it "gets the midpoint of a segment" $ do

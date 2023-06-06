@@ -1,4 +1,4 @@
-module Geom2d.TParameter (unTParameter, TParameter, mkTParameter, tMin, tMid, tMax, tError) where
+module Geom2d.TParameter (unTParameter, TParameter, mkTParameter, tMin, tMid, tMax) where
 
 import Geom2d.Nums (R)
 
@@ -15,10 +15,7 @@ tMax = UnsafeTParameter 1.0
 tMid :: TParameter
 tMid = UnsafeTParameter 0.5
 
-tError :: Either String TParameter
-tError = Left "Parameter t must be in the interval [0, 1]"
-
-mkTParameter :: Double -> Either String TParameter
+mkTParameter :: Double -> Maybe TParameter
 mkTParameter t
-  | 0 <= t && t <= 1 = Right $ UnsafeTParameter t
-  | otherwise = Left "Parameter t must be in the interval [0, 1]"
+  | 0 <= t && t <= 1 = Just $ UnsafeTParameter t
+  | otherwise = Nothing
