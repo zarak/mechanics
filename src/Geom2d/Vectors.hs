@@ -1,3 +1,5 @@
+module Geom2d.Vectors where
+
 import Geom2d.Nums (R)
 import Geom2d.Point (Point (..))
 import Geom2d.Vector (Vector (..), normalized, subP)

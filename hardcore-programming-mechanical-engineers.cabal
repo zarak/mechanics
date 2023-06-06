@@ -22,6 +22,8 @@ library
                     , Geom2d.Point 
                     , Geom2d.Vector
                     , Geom2d.Nums
+                    , Geom2d.Vectors
+                    , Geom2d.Segment
     -- other-modules:
     -- other-extensions:
     build-depends:    base ^>=4.16.4.0
