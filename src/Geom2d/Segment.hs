@@ -34,4 +34,4 @@ pointAt t segment = displaced (unTParameter t) direction segment.start
     direction = directionVector segment
 
 middle :: Segment -> Point
-middle = pointAt 0.5
+middle = pointAt tMid

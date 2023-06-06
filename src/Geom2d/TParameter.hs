@@ -4,16 +4,16 @@ import Geom2d.Nums (R)
 
 newtype TParameter = UnsafeTParameter
   {unTParameter :: R}
-  deriving (Num, Show, Eq, Fractional)
+  deriving (Show, Eq)
 
 tMin :: TParameter
-tMin = 0.0
+tMin = UnsafeTParameter 0.0
 
 tMax :: TParameter
-tMax = 1.0
+tMax = UnsafeTParameter 1.0
 
 tMid :: TParameter
-tMid = 0.5
+tMid = UnsafeTParameter 0.5
 
 mkTParameter :: Double -> Either String TParameter
 mkTParameter t
