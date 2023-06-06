@@ -49,6 +49,7 @@ test-suite hardcore-programming-mechanical-engineers-test
     default-language: GHC2021
     other-modules:    Geom2d.PointSpec
                     , Geom2d.VectorSpec
+                    , Geom2d.SegmentSpec
     -- other-extensions:
     type:             exitcode-stdio-1.0
     hs-source-dirs:   test
