@@ -5,6 +5,7 @@ module Geom2d.Segment where
 
 import Geom2d.Nums (R)
 import Geom2d.Point
+import Geom2d.Point qualified as Point (distanceTo)
 import Geom2d.TParameter
 import Geom2d.Vector
 import Geom2d.Vectors
@@ -46,7 +47,7 @@ normalVersor :: Segment -> Vector
 normalVersor = perpendicular . directionVersor
 
 length :: Segment -> R
-length segment = segment.start `distanceTo` segment.end
+length segment = segment.start `Point.distanceTo` segment.end
 
 pointAt :: TParameter -> Segment -> Point
 pointAt t segment = displaced (unTParameter t) direction segment.start
@@ -67,8 +68,8 @@ closestPoint p segment
     vs = v `projectionOver` d
     l = length segment
 
-distanceSegmentToPoint :: Point -> Segment -> R
-distanceSegmentToPoint p = distanceTo p . closestPoint p
+distanceTo :: Point -> Segment -> R
+distanceTo p = Point.distanceTo p . closestPoint p
 
 intersectionWith :: Segment -> Segment -> Maybe Point
 intersectionWith s1 s2
