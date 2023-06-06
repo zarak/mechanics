@@ -35,3 +35,14 @@ pointAt t segment = displaced (unTParameter t) direction segment.start
 
 middle :: Segment -> Point
 middle = pointAt tMid
+
+closestPoint :: Point -> Segment -> Point
+closestPoint p segment
+  | vs < 0 = segment.start
+  | vs > l = segment.end
+  | otherwise = displaced vs d segment.start
+  where
+    v = mkVectorBetween segment.start p
+    d = directionVersor segment
+    vs = v `projectionOver` d
+    l = length segment
