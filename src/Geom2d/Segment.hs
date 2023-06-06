@@ -46,3 +46,6 @@ closestPoint p segment
     d = directionVersor segment
     vs = v `projectionOver` d
     l = length segment
+
+distanceSegmentToPoint :: Point -> Segment -> R
+distanceSegmentToPoint p = distanceTo p . closestPoint p
