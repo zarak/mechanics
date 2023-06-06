@@ -26,3 +26,11 @@ normalVersor = perpendicular . directionVersor
 
 length :: Segment -> R
 length segment = segment.start `distanceTo` segment.end
+
+pointAt :: R -> Segment -> Point
+pointAt t segment = displaced t direction segment.start
+  where
+    direction = directionVector segment
+
+middle :: Segment -> Point
+middle = pointAt 0.5
