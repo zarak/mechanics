@@ -5,6 +5,7 @@ module Geom2d.Segment where
 
 import Geom2d.Nums (R)
 import Geom2d.Point
+import Geom2d.TParameter
 import Geom2d.Vector
 import Geom2d.Vectors
 import Prelude hiding (length)
@@ -27,8 +28,8 @@ normalVersor = perpendicular . directionVersor
 length :: Segment -> R
 length segment = segment.start `distanceTo` segment.end
 
-pointAt :: R -> Segment -> Point
-pointAt t segment = displaced t direction segment.start
+pointAt :: TParameter -> Segment -> Point
+pointAt t segment = displaced (unTParameter t) direction segment.start
   where
     direction = directionVector segment
 
