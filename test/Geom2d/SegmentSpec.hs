@@ -46,3 +46,11 @@ spec = do
         let p = Point 250 250
             expected = Point 200 200
         closestPoint p segment `shouldBe` expected
+  describe "intersectionWith" $ do
+    it "does not return a point when there is no intersection" $ do
+      let other = Segment (Point 200 0) (Point 0 200)
+      segment `intersectionWith` other `shouldBe` Nothing
+    it "does return a point when there is an intersection" $ do
+      let other = Segment (Point 0 0) (Point 400 400)
+          expected = Point 200 200
+      segment `intersectionWith` other `shouldBe` pure expected
