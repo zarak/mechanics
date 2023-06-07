@@ -27,6 +27,7 @@ library
                     , Geom2d.TParameter
                     , Geom2d.Line
                     , Geom2d.Polygon
+                    , Geom2d.Circle
                     , Utils.Pairs
     -- other-modules:
     -- other-extensions:
@@ -55,6 +56,7 @@ test-suite hardcore-programming-mechanical-engineers-test
                     , Geom2d.SegmentSpec
                     , Geom2d.LineSpec
                     , Geom2d.PolygonSpec
+                    , Geom2d.CircleSpec
     -- other-extensions:
     type:             exitcode-stdio-1.0
     hs-source-dirs:   test

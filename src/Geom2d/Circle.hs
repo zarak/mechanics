@@ -12,7 +12,7 @@ data Circle = Circle
   deriving (Show)
 
 area :: Circle -> R
-area circle = pi * circle.radius
+area circle = pi * circle.radius ** 2
 
 circumference :: Circle -> R
 circumference circle = 2 * pi * circle.radius
