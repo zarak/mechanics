@@ -80,14 +80,14 @@ angleValueBetween v1 v2 = acos (dotProduct / normProduct)
     dotProduct = dot v1 v2
     normProduct = norm v1 * norm v2
 
-angleBetween :: Vector -> Vector -> R
-angleBetween v1 v2 = copySign value crossProduct
+angleTo :: Vector -> Vector -> R
+angleTo v1 v2 = copySign value crossProduct
   where
     value = angleValueBetween v1 v2
     crossProduct = cross v1 v2
 
 (>|) :: Vector -> Vector -> R
-v1 >| v2 = angleBetween v1 v2
+v1 >| v2 = angleTo v1 v2
 
 infix 7 >|
 

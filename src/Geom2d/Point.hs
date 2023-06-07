@@ -27,6 +27,8 @@ test = do
 addP :: Point -> Point -> Point
 addP (Point x1 y1) (Point x2 y2) = Point (x1 + x2) (y1 + y2)
 
+-- Defining a Monoid for `Point` is useful for the centroid function in the Polygon
+-- module
 instance Semigroup Point where
   (<>) = addP
 

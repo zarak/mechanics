@@ -5,8 +5,11 @@
 
 module Geom2d.Polygon where
 
+import Geom2d.Nums (areCloseEnough)
 import Geom2d.Point
 import Geom2d.Segment (Segment (..))
+import Geom2d.Vector (angleTo)
+import Geom2d.Vectors (mkVectorBetween)
 import Utils.Pairs (mkRoundPairs)
 
 newtype Polygon = UnsafePolygon
@@ -29,3 +32,10 @@ centroid poly =
   let vtxCount = fromIntegral $ length poly.vertices
       vtxSum = foldr (<>) mempty poly.vertices
    in Point (vtxSum.x / vtxCount) (vtxSum.y / vtxCount)
+
+containsPoint :: Polygon -> Point -> Bool
+containsPoint poly p =
+  let vecs = [mkVectorBetween p v | v <- poly.vertices]
+      pairedVecs = mkRoundPairs vecs
+      angleSum = sum $ fmap (uncurry angleTo) pairedVecs
+   in areCloseEnough 1e-10 angleSum (2 * pi)
