@@ -25,6 +25,7 @@ library
                     , Geom2d.Vectors
                     , Geom2d.Segment
                     , Geom2d.TParameter
+                    , Geom2d.Line
     -- other-modules:
     -- other-extensions:
     build-depends:    base ^>=4.16.4.0
@@ -50,6 +51,7 @@ test-suite hardcore-programming-mechanical-engineers-test
     other-modules:    Geom2d.PointSpec
                     , Geom2d.VectorSpec
                     , Geom2d.SegmentSpec
+                    , Geom2d.LineSpec
     -- other-extensions:
     type:             exitcode-stdio-1.0
     hs-source-dirs:   test
