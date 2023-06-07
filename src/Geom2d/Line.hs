@@ -28,10 +28,12 @@ parallelThrough p line =
   Line p line.direction
 
 intersectionWith :: Line -> Line -> Maybe Point
-intersectionWith l1 l2 = do
-  let d1 = l1.direction
-      d2 = l2.direction
-      crossProd = d1 `cross` d2
-      delta = mkVectorBetween l1.base l2.base
-      t1 = (delta.u * d2.v - delta.v * d2.u) / crossProd
-  pure $ displaced t1 d1 l1.base
+intersectionWith l1 l2
+  | l1 `isParallelTo` l2 = Nothing
+  | otherwise = pure $ displaced t1 d1 l1.base
+  where
+    d1 = l1.direction
+    d2 = l2.direction
+    crossProd = d1 `cross` d2
+    delta = mkVectorBetween l1.base l2.base
+    t1 = (delta.u * d2.v - delta.v * d2.u) / crossProd
