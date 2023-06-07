@@ -33,9 +33,12 @@ centroid poly =
       vtxSum = foldr (<>) mempty poly.vertices
    in Point (vtxSum.x / vtxCount) (vtxSum.y / vtxCount)
 
-containsPoint :: Polygon -> Point -> Bool
-containsPoint poly p =
-  let vecs = [mkVectorBetween p v | v <- poly.vertices]
-      pairedVecs = mkRoundPairs vecs
-      angleSum = sum $ fmap (uncurry angleTo) pairedVecs
-   in areCloseEnough 1e-10 angleSum (2 * pi)
+containsPoint :: Point -> Polygon -> Bool
+containsPoint p poly
+  | p `elem` poly.vertices = True
+  | otherwise = areCloseEnough tolerance angleSum (2 * pi)
+  where
+    tolerance = 1e-10
+    vecs = [mkVectorBetween p v | v <- poly.vertices]
+    pairedVecs = mkRoundPairs vecs
+    angleSum = foldr ((+) . uncurry angleTo) 0 pairedVecs
