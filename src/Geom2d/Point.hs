@@ -25,4 +25,10 @@ test = do
   print $ p.x
 
 addP :: Point -> Point -> Point
-addP (Point x1 y1) (Point x2 y2) = Point (x1 + y1) (x2 + y2)
+addP (Point x1 y1) (Point x2 y2) = Point (x1 + x2) (y1 + y2)
+
+instance Semigroup Point where
+  (<>) = addP
+
+instance Monoid Point where
+  mempty = Point 0 0

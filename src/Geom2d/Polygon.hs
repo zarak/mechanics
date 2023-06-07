@@ -20,3 +20,9 @@ sides :: Polygon -> [Segment]
 sides poly =
   let vertexPairs = mkRoundPairs poly.vertices
    in [Segment s e | (s, e) <- vertexPairs]
+
+-- centroid :: Polygon -> Point
+-- centroid poly =
+--   let vtxCount = length poly.vertices
+--       vtxSum = foldr <> mempty poly.vertices
+--    in _todo
