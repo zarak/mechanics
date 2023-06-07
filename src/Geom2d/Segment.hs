@@ -3,6 +3,7 @@
 
 module Geom2d.Segment where
 
+import Geom2d.Line (Line (..))
 import Geom2d.Nums (R)
 import Geom2d.Point
 import Geom2d.Point qualified as Point (distanceTo)
@@ -19,7 +20,7 @@ data Segment = Segment
 
 instance Show Segment where
   show segment =
-    "Segment\n"
+    "Segment "
       <> startCoords
       <> "  o----------o  "
       <> endCoords
@@ -84,3 +85,6 @@ intersectionWith s1 s2
     delta = s2.start `subP` s1.start
     t1 = (delta.u * d2.v - delta.v * d2.u) / crossProd
     t2 = (delta.u * d1.v - delta.v * d1.u) / crossProd
+
+bisector :: Segment -> Line
+bisector segment = Line (middle segment) (normalVersor segment)
