@@ -1,4 +1,7 @@
 {-# LANGUAGE OverloadedRecordDot #-}
+{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
+
+{-# HLINT ignore "Use fold" #-}
 
 module Geom2d.Polygon where
 
@@ -21,8 +24,8 @@ sides poly =
   let vertexPairs = mkRoundPairs poly.vertices
    in [Segment s e | (s, e) <- vertexPairs]
 
--- centroid :: Polygon -> Point
--- centroid poly =
---   let vtxCount = length poly.vertices
---       vtxSum = foldr <> mempty poly.vertices
---    in _todo
+centroid :: Polygon -> Point
+centroid poly =
+  let vtxCount = fromIntegral $ length poly.vertices
+      vtxSum = foldr (<>) mempty poly.vertices
+   in Point (vtxSum.x / vtxCount) (vtxSum.y / vtxCount)
