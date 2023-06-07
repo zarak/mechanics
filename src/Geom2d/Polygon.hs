@@ -15,7 +15,7 @@ import Utils.Pairs (mkRoundPairs)
 newtype Polygon = UnsafePolygon
   { vertices :: [Point]
   }
-  deriving (Show)
+  deriving (Show, Eq)
 
 mkPolygon :: [Point] -> Maybe Polygon
 mkPolygon vertices
