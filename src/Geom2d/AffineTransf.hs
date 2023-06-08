@@ -1,4 +1,4 @@
-module AffineTransf where
+module Geom2d.AffineTransf where
 
 import Geom2d.Nums (R)
 import Geom2d.Point (Point (..))
