@@ -16,7 +16,7 @@ spec = do
     it "computes the area of a circle of radius 2" $ do
       let expected = 4 * pi
       area circle2 `shouldBe` expected
-  describe "area" $ do
+  describe "circumference" $ do
     it "computes the circumference of a circle of radius 1" $ do
       let expected = 2 * pi
       circumference circle1 `shouldBe` expected
