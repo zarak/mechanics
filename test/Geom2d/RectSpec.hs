@@ -1,6 +1,7 @@
 module Geom2d.RectSpec (spec) where
 
 import Geom2d.Point
+import Geom2d.Polygon (mkPolygon)
 import Geom2d.Rect
 import Geom2d.Size
 import Test.Hspec
@@ -22,3 +23,8 @@ spec = do
             rect = Rect origin size
             p = Point 150 50
         p `shouldNotSatisfy` containsPoint rect
+  describe "toPolygon" $ do
+    it "creates a polygon with vertices in anti-clockwise order" $ do
+      let rect = Rect (Point 0 0) (Size 10 10)
+          expected = mkPolygon [Point 0 0, Point 10 0, Point 10 10, Point 0 10]
+      toPolygon rect `shouldBe` expected

@@ -6,13 +6,14 @@ import Geom2d.Nums (R)
 import Geom2d.OpenInterval
 import Geom2d.OpenInterval qualified as OpenInterval (length)
 import Geom2d.Point (Point (..))
+import Geom2d.Polygon (Polygon, mkPolygon)
 import Geom2d.Size
 
 data Rect = Rect
   { origin :: Point,
     size :: Size
   }
-  deriving (Show)
+  deriving (Show, Eq)
 
 left :: Rect -> R
 left rect = rect.origin.x
@@ -58,3 +59,12 @@ intersectionWith r1 r2 = do
       vInterval1 <- mkOpenInterval (bottom r1') (top r1')
       vInterval2 <- mkOpenInterval (bottom r2') (top r2')
       computeOverlapWith vInterval1 vInterval2
+
+toPolygon :: Rect -> Maybe Polygon
+toPolygon r =
+  mkPolygon
+    [ r.origin,
+      Point (right r) (bottom r),
+      Point (right r) (top r),
+      Point (left r) (top r)
+    ]
