@@ -1,12 +1,12 @@
 {-# LANGUAGE OverloadedRecordDot #-}
 
 module Geom2d.OpenInterval
-  ( OpenInterval,
-    mkOpenInterval,
+  ( mkOpenInterval,
     contains,
     length,
     overlapsInterval,
     computeOverlapWith,
+    OpenInterval (..),
   )
 where
 
