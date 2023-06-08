@@ -2,6 +2,7 @@ module Geom2d.AffineTransfSpec where
 
 import Geom2d.AffineTransf
   ( AffineTransform (..),
+    affThen,
     applyToPoint,
     applyToPolygon,
     applyToRect,
@@ -48,3 +49,10 @@ spec = do
     it "scales a rectangle" $ do
       let expected = Rect.toPolygon $ Rect (Point 0 0) (Size 20 50)
       applyToRect scale rect `shouldBe` expected
+  describe "affThen" $ do
+    it "concatenates scale and then translate" $ do
+      let expected = defaultTransf {sx = 2, sy = 5, tx = 10, ty = 15}
+      affThen scale trans `shouldBe` expected
+    it "concatenates translate and then scale" $ do
+      let expected = defaultTransf {sx = 2, sy = 5, tx = 20, ty = 75}
+      affThen trans scale `shouldBe` expected
