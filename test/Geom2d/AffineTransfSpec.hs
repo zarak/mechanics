@@ -8,6 +8,7 @@ import Geom2d.AffineTransf
     applyToRect,
     applyToSegment,
     defaultTransf,
+    inverse,
   )
 import Geom2d.Point (Point (..))
 import Geom2d.Polygon
@@ -56,3 +57,8 @@ spec = do
     it "concatenates translate and then scale" $ do
       let expected = defaultTransf {sx = 2, sy = 5, tx = 20, ty = 75}
       affThen trans scale `shouldBe` expected
+  describe "inverse" $ do
+    it "computes the inverse of an affine transformation" $ do
+      let transf = AffineTransform 1 2 3 4 5 6
+          expected = defaultTransf
+      transf `affThen` inverse transf `shouldBe` expected

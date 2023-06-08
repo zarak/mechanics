@@ -31,7 +31,7 @@ instance Eq AffineTransform where
       tol = 1e-10
 
 defaultTransf :: AffineTransform
-defaultTransf = AffineTransform 1 1 0 0 0 0
+defaultTransf = AffineTransform {sx = 1, sy = 1, tx = 0, ty = 0, shx = 0, shy = 0}
 
 applyToPoint :: AffineTransform -> Point -> Point
 applyToPoint affT p =
@@ -65,5 +65,17 @@ affThen affT1 affT2 =
       tx = affT2.sx * affT1.tx + affT2.shx * affT1.ty + affT2.tx,
       ty = affT2.shy * affT1.tx + affT2.sy * affT1.ty + affT2.ty,
       shx = affT2.sx * affT1.shx + affT2.shx * affT1.sy,
-      shy = affT2.shy * affT2.sx + affT2.sy * affT1.shy
+      shy = affT2.shy * affT1.sx + affT2.sy * affT1.shy
     }
+
+inverse :: AffineTransform -> AffineTransform
+inverse affT =
+  let denom = affT.sx * affT.sy - affT.shx * affT.shy
+   in AffineTransform
+        { sx = affT.sy / denom,
+          sy = affT.sx / denom,
+          tx = (affT.ty * affT.shx - affT.sy * affT.tx) / denom,
+          ty = (affT.tx * affT.shy - affT.sx * affT.ty) / denom,
+          shx = -affT.shx / denom,
+          shy = -affT.shy / denom
+        }
