@@ -29,3 +29,7 @@ area rect = rect.size.width * rect.size.height
 
 perimeter :: Rect -> R
 perimeter rect = 2 * rect.size.width + 2 * rect.size.width
+
+containsPoint :: Rect -> Point -> Bool
+containsPoint rect p =
+  (left rect < p.x && p.x < right rect) && (bottom rect < p.y && p.y < top rect)

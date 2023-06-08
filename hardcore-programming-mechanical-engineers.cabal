@@ -59,6 +59,7 @@ test-suite hardcore-programming-mechanical-engineers-test
                     , Geom2d.LineSpec
                     , Geom2d.PolygonSpec
                     , Geom2d.CircleSpec
+                    , Geom2d.RectSpec
     -- other-extensions:
     type:             exitcode-stdio-1.0
     hs-source-dirs:   test
