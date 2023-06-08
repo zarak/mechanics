@@ -6,6 +6,7 @@ module Geom2d.OpenInterval
     contains,
     length,
     overlapsInterval,
+    computeOverlapWith,
   )
 where
 
@@ -45,3 +46,8 @@ overlapsInterval oi1 oi2 = equalIntervals || partialOverlap
       areCloseEnough tolerance oi1.start oi2.start
         && areCloseEnough tolerance oi1.end oi2.end
     tolerance = 1e-10
+
+computeOverlapWith :: OpenInterval -> OpenInterval -> Maybe OpenInterval
+computeOverlapWith oi1 oi2
+  | not $ oi1 `overlapsInterval` oi2 = Nothing
+  | otherwise = mkOpenInterval (max oi1.start oi2.start) (min oi1.end oi2.end)

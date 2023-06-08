@@ -30,6 +30,7 @@ library
                     , Geom2d.Circle
                     , Geom2d.Size
                     , Geom2d.Rect
+                    , Geom2d.OpenInterval
                     , Utils.Pairs
     -- other-modules:
     -- other-extensions:
@@ -60,6 +61,7 @@ test-suite hardcore-programming-mechanical-engineers-test
                     , Geom2d.PolygonSpec
                     , Geom2d.CircleSpec
                     , Geom2d.RectSpec
+                    , Geom2d.OpenIntervalSpec
     -- other-extensions:
     type:             exitcode-stdio-1.0
     hs-source-dirs:   test
