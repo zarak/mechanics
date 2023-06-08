@@ -2,7 +2,7 @@ module Geom2d.AffineTransf where
 
 import Geom2d.Circle
 import Geom2d.Circle qualified as Circle (toPolygon)
-import Geom2d.Nums (R)
+import Geom2d.Nums (R, areCloseEnough)
 import Geom2d.Point (Point (..))
 import Geom2d.Polygon
 import Geom2d.Rect
@@ -18,6 +18,17 @@ data AffineTransform = AffineTransform
     shy :: R
   }
   deriving (Show)
+
+instance Eq AffineTransform where
+  aff1 == aff2 =
+    areCloseEnough tol aff1.sx aff2.sx
+      && areCloseEnough tol aff1.sy aff2.sy
+      && areCloseEnough tol aff1.tx aff2.tx
+      && areCloseEnough tol aff1.ty aff2.ty
+      && areCloseEnough tol aff1.shx aff2.shx
+      && areCloseEnough tol aff1.shy aff2.shy
+    where
+      tol = 1e-10
 
 defaultTransf :: AffineTransform
 defaultTransf = AffineTransform 1 1 0 0 0 0
@@ -45,3 +56,14 @@ applyToCircle affT circle divisions = Circle.toPolygon circle divisions >>= appl
 
 applyToCircle30 :: AffineTransform -> Circle -> Maybe Polygon
 applyToCircle30 affT circle = applyToCircle affT circle 30
+
+affThen :: AffineTransform -> AffineTransform -> AffineTransform
+affThen affT1 affT2 =
+  AffineTransform
+    { sx = affT2.sx * affT1.sx + affT2.shx * affT1.shy,
+      sy = affT2.shy * affT1.shx + affT2.sy * affT1.sy,
+      tx = affT2.sx * affT1.tx + affT2.shx * affT1.ty + affT2.tx,
+      ty = affT2.shy * affT1.tx + affT2.sy * affT1.ty + affT2.ty,
+      shx = affT2.sx * affT1.shx + affT2.shx * affT1.sy,
+      shy = affT2.shy * affT2.sx + affT2.sy * affT1.shy
+    }
