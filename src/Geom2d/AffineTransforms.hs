@@ -12,3 +12,15 @@ mkScale sx sy center =
       tx = center.x * (1.0 - sx),
       ty = center.y * (1.0 - sy)
     }
+
+mkRotation :: R -> Point -> AffineTransform
+mkRotation radians center =
+  let oneMinusCos = 1.0 - cos radians
+   in AffineTransform
+        { sx = cos radians,
+          sy = cos radians,
+          tx = center.x * oneMinusCos + center.y * sin radians,
+          ty = center.y * oneMinusCos - center.x * sin radians,
+          shx = -(sin radians),
+          shy = -(sin radians)
+        }
