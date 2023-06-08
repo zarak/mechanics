@@ -1,5 +1,4 @@
-{-# LANGUAGE OverloadedRecordDot #-}
-
+-- {-# LANGUAGE OverloadedRecordDot #-}
 module Geom2d.Size where
 
 import Geom2d.Nums (R, areCloseEnough)

@@ -28,6 +28,8 @@ library
                     , Geom2d.Line
                     , Geom2d.Polygon
                     , Geom2d.Circle
+                    , Geom2d.Size
+                    , Geom2d.Rect
                     , Utils.Pairs
     -- other-modules:
     -- other-extensions:
