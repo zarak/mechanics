@@ -1,3 +1,6 @@
+{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
+
+{-# HLINT ignore "Use <$>" #-}
 module Geom2d.AffineTransfSpec where
 
 import Geom2d.AffineTransf
@@ -17,6 +20,21 @@ import Geom2d.Rect qualified as Rect (toPolygon)
 import Geom2d.Segment
 import Geom2d.Size
 import Test.Hspec
+import Test.Hspec.QuickCheck (prop)
+import Test.QuickCheck (Arbitrary, arbitrary)
+
+newtype AffineTransformWrapper = AffineTransformWrapper AffineTransform deriving (Eq, Show)
+
+-- Need to fix some values to ensure transform is invertible
+instance Arbitrary AffineTransformWrapper where
+  arbitrary = do
+    -- sx <- arbitrary
+    -- sy <- arbitrary
+    tx <- arbitrary
+    ty <- arbitrary
+    -- shx <- arbitrary
+    shy <- arbitrary
+    pure $ AffineTransformWrapper (AffineTransform 1 1 tx ty 2 shy)
 
 spec :: Spec
 spec = do
@@ -62,3 +80,7 @@ spec = do
       let transf = AffineTransform 1 2 3 4 5 6
           expected = defaultTransf
       transf `affThen` inverse transf `shouldBe` expected
+    prop "of a transform composed with itself yields an identity transform" $ do
+      let propInverseIdentity (AffineTransformWrapper affT) =
+            affThen affT (inverse affT) == defaultTransf
+      propInverseIdentity
