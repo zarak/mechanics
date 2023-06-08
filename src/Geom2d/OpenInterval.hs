@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedRecordDot #-}
-
 module Geom2d.OpenInterval
   ( mkOpenInterval,
     contains,

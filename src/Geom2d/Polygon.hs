@@ -1,7 +1,4 @@
-{-# LANGUAGE OverloadedRecordDot #-}
-{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
-
-{-# HLINT ignore "Use fold" #-}
+{- HLINT ignore "Use fold" -}
 
 module Geom2d.Polygon where
 

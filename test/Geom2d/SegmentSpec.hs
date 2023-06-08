@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedRecordDot #-}
-
 module Geom2d.SegmentSpec (spec) where
 
 import Geom2d.Point

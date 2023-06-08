@@ -34,7 +34,8 @@ library
                     , Geom2d.OpenInterval
                     , Utils.Pairs
     -- other-modules:
-    -- other-extensions:
+    default-extensions: OverloadedRecordDot 
+                      , NegativeLiterals
     build-depends:    base ^>=4.16.4.0
                     , ieee754
     hs-source-dirs:   src
@@ -64,7 +65,8 @@ test-suite hardcore-programming-mechanical-engineers-test
                     , Geom2d.RectSpec
                     , Geom2d.RectsSpec
                     , Geom2d.OpenIntervalSpec
-    -- other-extensions:
+    default-extensions: OverloadedRecordDot 
+                      , NegativeLiterals
     type:             exitcode-stdio-1.0
     hs-source-dirs:   test
     main-is:          Spec.hs

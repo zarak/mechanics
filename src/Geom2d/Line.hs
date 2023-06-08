@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedRecordDot #-}
-
 module Geom2d.Line where
 
 import Geom2d.Point (Point)

@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedRecordDot #-}
-
 module Geom2d.Rect where
 
 import Geom2d.Nums (R)

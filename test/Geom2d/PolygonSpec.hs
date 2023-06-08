@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedRecordDot #-}
-
 module Geom2d.PolygonSpec where
 
 import Geom2d.Point (Point (..))

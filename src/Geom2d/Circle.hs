@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedRecordDot #-}
-
 module Geom2d.Circle where
 
 import Geom2d.Nums (R, areCloseEnough)
