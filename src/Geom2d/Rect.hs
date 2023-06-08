@@ -34,7 +34,12 @@ perimeter rect = 2 * rect.size.width + 2 * rect.size.width
 
 containsPoint :: Rect -> Point -> Bool
 containsPoint rect p =
-  (left rect < p.x && p.x < right rect) && (bottom rect < p.y && p.y < top rect)
+  ( left rect < p.x
+      && p.x < right rect
+  )
+    && ( bottom rect < p.y
+           && p.y < top rect
+       )
 
 intersectionWith :: Rect -> Rect -> Maybe Rect
 intersectionWith r1 r2 = do
