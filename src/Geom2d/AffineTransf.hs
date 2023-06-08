@@ -13,8 +13,8 @@ data AffineTransform = AffineTransform
   }
   deriving (Show)
 
-identity :: AffineTransform
-identity = AffineTransform 1 1 0 0 0 0
+defaultTransf :: AffineTransform
+defaultTransf = AffineTransform 1 1 0 0 0 0
 
 applyToPoint :: AffineTransform -> Point -> Point
 applyToPoint affT p =
