@@ -40,6 +40,7 @@ library
                     , Graphic.Svg.Read
                     , Graphic.Svg.Image
                     , Graphic.Svg.Primitives
+                    , Graphic.Svg.Attributes
                     , Utils.Pairs
     -- other-modules:
     default-extensions: OverloadedRecordDot 
@@ -80,6 +81,7 @@ test-suite hardcore-programming-mechanical-engineers-test
                     , Geom2d.AffineTransfSpec
                     , Geom2d.AffineTransformsSpec
                     , Geom2d.InterpolationSpec
+                    , Graphics.PrimitivesSpec
     default-extensions: OverloadedRecordDot 
                       , NegativeLiterals
     type:             exitcode-stdio-1.0
