@@ -25,3 +25,12 @@ affineTransform t =
       tyVal = show t.ty
       values = unwords [sxVal, shyVal, shxVal, syVal, txVal, tyVal]
    in "transform=\"matrix(" <> values <> ")\""
+
+fontSize :: R -> String
+fontSize size = "font-size=\"" <> show size <> "px\""
+
+fontFamily :: String -> String
+fontFamily font = "font-family=\"" <> font <> "\""
+
+attrsToStr :: [String] -> String
+attrsToStr = unwords

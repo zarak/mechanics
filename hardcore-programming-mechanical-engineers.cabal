@@ -39,9 +39,11 @@ library
                     , Geom2d.Interpolation
                     , Graphic.Svg.Read
                     , Graphic.Svg.Image
+                    , Graphic.Svg.Primitives
                     , Utils.Pairs
     -- other-modules:
     default-extensions: OverloadedRecordDot 
+                      , OverloadedStrings
                       , NegativeLiterals
     build-depends:    base ^>=4.16.4.0
                     , ieee754
