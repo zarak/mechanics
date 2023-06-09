@@ -1,6 +1,7 @@
 module Graphic.Svg.Primitives where
 
 import Data.Text qualified as T (pack, replace, unpack)
+import Geom2d.Circle
 import Geom2d.Point
 import Geom2d.Rect
 import Geom2d.Segment
@@ -25,6 +26,16 @@ rectangle rect attributes template =
           . T.replace "{{y}}" (T.pack $ show rect.origin.y)
           . T.replace "{{width}}" (T.pack $ show rect.size.width)
           . T.replace "{{height}}" (T.pack $ show rect.size.height)
+          . T.replace "{{attrs}}" (T.pack $ attrsToStr attributes)
+          $ T.pack template
+   in T.unpack replacedTemplate
+
+circle :: Circle -> [String] -> String -> String
+circle circ attributes template =
+  let replacedTemplate =
+        T.replace "{{cx}}" (T.pack $ show circ.center.x)
+          . T.replace "{{cy}}" (T.pack $ show circ.center.y)
+          . T.replace "{{r}}" (T.pack $ show circ.radius)
           . T.replace "{{attrs}}" (T.pack $ attrsToStr attributes)
           $ T.pack template
    in T.unpack replacedTemplate
