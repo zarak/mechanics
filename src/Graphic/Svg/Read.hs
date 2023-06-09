@@ -7,6 +7,6 @@ import System.Directory (makeAbsolute)
 
 readTemplate :: FilePath -> IO Text
 readTemplate fileName = do
-  absolutePath <- makeAbsolute ("templates/" <> fileName)
+  absolutePath <- makeAbsolute ("src/Graphic/Svg/templates/" <> fileName)
   bytesStr <- BS.readFile absolutePath
   pure (decodeUtf8 bytesStr)
