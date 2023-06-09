@@ -1,7 +1,8 @@
 module Geom2d.Interpolation where
 
 import Geom2d.Nums (R)
-import Geom2d.TParameter (TParameter (..), unTParameter)
+import Geom2d.TParameter (TParameter (unTParameter), unTParameter)
+import Geom2d.TParameter.Internal (TParameter (UnsafeTParameter))
 
 uniformTSequence :: R -> [TParameter]
 uniformTSequence steps = UnsafeTParameter <$> [0, 1 / steps .. 1.0]

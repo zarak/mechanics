@@ -2,6 +2,7 @@ module Geom2d.InterpolationSpec where
 
 import Geom2d.Interpolation
 import Geom2d.TParameter
+import Geom2d.TParameter.Internal (TParameter (UnsafeTParameter))
 import Test.Hspec
 
 spec :: Spec

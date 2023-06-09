@@ -30,6 +30,7 @@ library
                     , Geom2d.Circle
                     , Geom2d.Size
                     , Geom2d.TParameter
+                    , Geom2d.TParameter.Internal
                     , Geom2d.Rect
                     , Geom2d.Rects
                     , Geom2d.OpenInterval
