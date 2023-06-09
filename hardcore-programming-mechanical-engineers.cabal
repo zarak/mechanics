@@ -37,6 +37,7 @@ library
                     , Geom2d.AffineTransf
                     , Geom2d.AffineTransforms
                     , Geom2d.Interpolation
+                    , Graphic.Svg.Read
                     , Utils.Pairs
     -- other-modules:
     default-extensions: OverloadedRecordDot 
