@@ -22,5 +22,8 @@ mkRotation radians center =
           tx = center.x * oneMinusCos + center.y * sin radians,
           ty = center.y * oneMinusCos - center.x * sin radians,
           shx = -(sin radians),
-          shy = -(sin radians)
+          shy = sin radians
         }
+
+mkRotationOrigin :: R -> AffineTransform
+mkRotationOrigin = flip mkRotation (Point 0 0)

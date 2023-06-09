@@ -33,6 +33,7 @@ library
                     , Geom2d.Rects
                     , Geom2d.OpenInterval
                     , Geom2d.AffineTransf
+                    , Geom2d.AffineTransforms
                     , Utils.Pairs
     -- other-modules:
     default-extensions: OverloadedRecordDot 
@@ -67,6 +68,7 @@ test-suite hardcore-programming-mechanical-engineers-test
                     , Geom2d.RectsSpec
                     , Geom2d.OpenIntervalSpec
                     , Geom2d.AffineTransfSpec
+                    , Geom2d.AffineTransformsSpec
     default-extensions: OverloadedRecordDot 
                       , NegativeLiterals
     type:             exitcode-stdio-1.0
