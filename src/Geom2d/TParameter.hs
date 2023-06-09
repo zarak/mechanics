@@ -1,10 +1,15 @@
-module Geom2d.TParameter (unTParameter, TParameter, mkTParameter, tMin, tMid, tMax) where
+module Geom2d.TParameter (TParameter (..), mkTParameter, tMin, tMid, tMax) where
 
-import Geom2d.Nums (R)
+import Geom2d.Nums (R, areCloseEnough)
 
 newtype TParameter = UnsafeTParameter
   {unTParameter :: R}
-  deriving (Show, Eq)
+  deriving (Show)
+
+instance Eq TParameter where
+  (UnsafeTParameter t1) == (UnsafeTParameter t2) = areCloseEnough tolerance t1 t2
+    where
+      tolerance = 1e-10
 
 tMin :: TParameter
 tMin = UnsafeTParameter 0.0
