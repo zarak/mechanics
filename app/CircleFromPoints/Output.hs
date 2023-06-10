@@ -19,7 +19,7 @@ drawToSvg points circle config templates = do
       viewbox = mkViewbox circle
 
       svgImg = svgContent viewbox.size svgOutput templates._img (Just viewbox) Nothing
-  print svgImg
+  putStr svgImg
 
 outputToSvg :: Circle -> InputOutput -> Template -> [String]
 outputToSvg circle config templates =

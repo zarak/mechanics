@@ -3,7 +3,9 @@ module Geom2d.Point where
 import Geom2d.Nums
 
 data Point = Point {x :: R, y :: R}
-  deriving (Show)
+
+instance Show Point where
+  show (Point x y) = "(" <> show x <> ", " <> show y <> ")"
 
 instance Eq Point where
   p1 == p2 =
