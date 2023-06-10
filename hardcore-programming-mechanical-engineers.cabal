@@ -54,6 +54,15 @@ library
     hs-source-dirs:   src
     default-language: GHC2021
 
+executable circle-from-points
+    import:           warnings
+    main-is:          CircleFromPoints.hs
+    ghc-options:      -main-is CircleFromPoints
+    build-depends:    base ^>=4.16.4.0,
+                      hardcore-programming-mechanical-engineers
+    hs-source-dirs:   app
+    default-language: GHC2021
+
 executable hardcore-programming-mechanical-engineers
     import:           warnings
     main-is:          Main.hs
