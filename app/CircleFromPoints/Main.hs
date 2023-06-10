@@ -1,10 +1,10 @@
 module Main where
 
-import Data.Either (fromRight)
 import Input
 
 main :: IO ()
 main = do
-  (a, b, c) <- parsePoints
-  let points = fmap (show . fromRight mempty) [a, b, c]
-  putStr $ unlines points
+  (ea, eb, ec) <- parsePoints
+  case sequence [ea, eb, ec] of
+    Left err -> putStrLn $ "Error: " ++ err
+    Right [a, b, c] -> putStr $ unlines $ map show [a, b, c]
