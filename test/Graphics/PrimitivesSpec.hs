@@ -6,6 +6,7 @@ import Geom2d.Polygon
 import Geom2d.Rect
 import Geom2d.Segment
 import Geom2d.Size
+import Geom2d.Vector
 import Graphic.Svg.Primitives qualified as Primitives
 import Test.Hspec
 
@@ -31,7 +32,6 @@ spec = do
       let circle = Circle (Point 1 2) 5
           expected = "<circle cx=\"1.0\" cy=\"2.0\" r=\"5.0\" />"
       Primitives.circle circle [] circTemplate `shouldBe` expected
-
   describe "polygon" $ do
     it "should render an SVG polygon" $ do
       let actual = do
@@ -39,3 +39,8 @@ spec = do
             pure $ Primitives.polygon p [] polTemplate
           expected = "<polygon points=\"2.0,3.0 4.0,5.0 6.0,7.0\" />"
       actual `shouldBe` Just expected
+  describe "text" $ do
+    it "should render an SVG text object" $ do
+      let txt = "Hello, SVG"
+          expected = "<text x=\"10.0\" y=\"15.0\" dx=\"5.0\" dy=\"6.0\" > Hello, SVG </text>"
+      Primitives.text txt (Point 10 15) (Vector 5 6) [] textTemplate `shouldBe` expected
