@@ -28,6 +28,7 @@ library
                     , Geom2d.Line
                     , Geom2d.Polygon
                     , Geom2d.Circle
+                    , Geom2d.Circles
                     , Geom2d.Size
                     , Geom2d.TParameter
                     , Geom2d.TParameter.Internal

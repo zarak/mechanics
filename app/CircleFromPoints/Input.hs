@@ -4,7 +4,6 @@
 
 module Input where
 
-import Data.Text qualified as T
 import Data.Text.Manipulate
 import Data.Void
 import Dhall
