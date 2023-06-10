@@ -1,5 +1,8 @@
 module Main where
 
+import Input
+
 main :: IO ()
 main = do
-  putStrLn "Hello, Haskell! Calling from CircleFromPoints"
+  (a, b, c) <- parsePoints
+  putStr $ unlines [a, b, c]
