@@ -8,6 +8,7 @@ import Geom2d.Polygon
 import Geom2d.Rect
 import Geom2d.Segment
 import Geom2d.Size
+import Geom2d.Vector
 import Graphic.Svg.Attributes (attrsToStr)
 
 segment :: Segment -> [String] -> String -> String
@@ -60,6 +61,18 @@ polyline :: [Point] -> [String] -> String -> String
 polyline points attributes template =
   let replacedTemplate =
         T.replace "{{points}}" (formatPoints points)
+          . T.replace "{{attrs}}" (T.pack $ attrsToStr attributes)
+          $ T.pack template
+   in T.unpack replacedTemplate
+
+text :: String -> Point -> Vector -> [String] -> String -> String
+text txt pos disp attributes template =
+  let replacedTemplate =
+        T.replace "{{x}}" (T.pack $ show pos.x)
+          . T.replace "{{y}}" (T.pack $ show pos.y)
+          . T.replace "{{dx}}" (T.pack $ show disp.u)
+          . T.replace "{{dy}}" (T.pack $ show disp.v)
+          . T.replace "{{text}}" (T.pack txt)
           . T.replace "{{attrs}}" (T.pack $ attrsToStr attributes)
           $ T.pack template
    in T.unpack replacedTemplate
