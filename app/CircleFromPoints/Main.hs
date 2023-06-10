@@ -2,12 +2,16 @@ module Main where
 
 import Geom2d.Circles
 import Input
+import Output
 
 main :: IO ()
 main = do
   conf <- readConfig
+  templates <- readTemplates
   (ea, eb, ec) <- parsePoints
   case sequence [ea, eb, ec] of
     Left err -> putStrLn $ "Error: " ++ err
-    Right [a, b, c] -> print $ mkCircleFromPoints a b c
-  putStr $ show conf
+    Right [a, b, c] -> do
+      case mkCircleFromPoints a b c of
+        Just circle -> drawToSvg [a, b, c] circle conf templates
+        Nothing -> print "Could not create circle"

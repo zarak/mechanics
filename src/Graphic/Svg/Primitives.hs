@@ -19,7 +19,8 @@ data Template = Template
     _polygon :: String,
     _polyline :: String,
     _text :: String,
-    _group :: String
+    _group :: String,
+    _img :: String
   }
   deriving (Show)
 

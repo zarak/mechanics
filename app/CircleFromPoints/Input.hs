@@ -9,6 +9,8 @@ import Data.Void
 import Dhall
 import Geom2d.Nums (R)
 import Geom2d.Point
+import Graphic.Svg.Primitives (Template (..))
+import Graphic.Svg.Read (readTemplate)
 import Text.Megaparsec
 import Text.Megaparsec.Char
 import Text.Megaparsec.Char.Lexer qualified as L (decimal)
@@ -37,6 +39,18 @@ instance FromDhall InputOutput where
 
 readConfig :: IO Config
 readConfig = inputFile auto "app/CircleFromPoints/config.dhall"
+
+readTemplates :: IO Template
+readTemplates = do
+  segment <- readTemplate "line"
+  rectangle <- readTemplate "rect"
+  circle <- readTemplate "circle"
+  polygon <- readTemplate "polygon"
+  polyline <- readTemplate "polyline"
+  text <- readTemplate "text"
+  group <- readTemplate "group"
+  image <- readTemplate "img"
+  pure $ Template segment rectangle circle polygon polyline text group image
 
 pInt :: Parsec Void String R
 pInt = L.decimal
