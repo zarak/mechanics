@@ -76,3 +76,15 @@ text txt pos disp attributes template =
           . T.replace "{{attrs}}" (T.pack $ attrsToStr attributes)
           $ T.pack template
    in T.unpack replacedTemplate
+
+group :: [String] -> [String] -> String -> String
+group primitives attributes template =
+  let replacedTemplate =
+        T.replace
+          "{{content}}"
+          (T.intercalate "\n" (T.pack <$> primitives))
+          . T.replace
+            "{{attrs}}"
+            (T.pack $ attrsToStr attributes)
+          $ T.pack template
+   in T.unpack replacedTemplate
