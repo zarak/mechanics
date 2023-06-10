@@ -104,6 +104,9 @@ group primitives attributes template =
 arrow :: Segment -> R -> R -> [String] -> Template -> String
 arrow seg arrowLength height attributes templates =
   let director = directionVector seg
+      -- TODO: refactor withLength order of args so that we can write
+      -- arrowLength `withLength` (opposite director)
+      -- etc.
       v_l = withLength arrowLength (opposite director)
       v_h1 = withLength (height / 2.0) (perpendicular director)
       v_h2 = opposite v_h1
