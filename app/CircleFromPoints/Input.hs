@@ -1,14 +1,31 @@
+{-# HLINT ignore "Use <$>" #-}
+{-# LANGUAGE DeriveAnyClass #-}
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 
-{-# HLINT ignore "Use <$>" #-}
 module Input where
 
 import Data.Void
+import Dhall
 import Geom2d.Nums (R)
 import Geom2d.Point
 import Text.Megaparsec
 import Text.Megaparsec.Char
 import Text.Megaparsec.Char.Lexer qualified as L (decimal)
+
+data Config = Config
+  { input :: InputOutput,
+    output :: InputOutput
+  }
+  deriving (Show, Generic, FromDhall)
+
+data InputOutput = InputOutput
+  { strokeColor :: String,
+    strokeWidth :: Natural,
+    fillColor :: String,
+    labelSize :: Natural,
+    fontFamily :: String
+  }
+  deriving (Show, Generic, FromDhall)
 
 pInt :: Parsec Void String R
 pInt = L.decimal

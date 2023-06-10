@@ -39,6 +39,7 @@
             ghcid
             cabal-install
             cloc
+            zlib
           ];
           inputsFrom = map (__getAttr "env") (__attrValues self.packages.${system});
         };

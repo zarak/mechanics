@@ -60,7 +60,8 @@ executable circle-from-points
     other-modules:    Input
     build-depends:    base ^>=4.16.4.0,
                       hardcore-programming-mechanical-engineers, 
-                      megaparsec
+                      megaparsec,
+                      dhall
     hs-source-dirs:   app/CircleFromPoints
     default-language: GHC2021
 
