@@ -57,6 +57,7 @@ library
 executable circle-from-points
     import:           warnings
     main-is:          Main.hs
+    other-modules:    Input
     build-depends:    base ^>=4.16.4.0,
                       hardcore-programming-mechanical-engineers
     hs-source-dirs:   app/CircleFromPoints
