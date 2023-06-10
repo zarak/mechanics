@@ -82,7 +82,7 @@ group primitives attributes template =
   let replacedTemplate =
         T.replace
           "{{content}}"
-          (T.intercalate "\n" (T.pack <$> primitives))
+          (T.intercalate "\n  " (T.pack <$> primitives))
           . T.replace
             "{{attrs}}"
             (T.pack $ attrsToStr attributes)

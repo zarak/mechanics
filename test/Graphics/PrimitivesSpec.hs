@@ -17,7 +17,10 @@ spec = do
       circTemplate = "<circle cx=\"{{cx}}\" cy=\"{{cy}}\" r=\"{{r}}\" {{attrs}}/>"
       polTemplate = "<polygon points=\"{{points}}\" {{attrs}}/>"
       textTemplate = "<text x=\"{{x}}\" y=\"{{y}}\" dx=\"{{dx}}\" dy=\"{{dy}}\" {{attrs}}>\n  {{text}}\n</text>"
-      groupTemplate = "<g {{attrs}}>\n  {{content}}\n</g>"
+      groupTemplate =
+        "<g {{attrs}}>\n\
+        \  {{content}}\n\
+        \</g>"
   describe "segment" $ do
     it "should render an SVG segment" $ do
       let segment = Segment (Point 2 3) (Point 4 5)
@@ -48,5 +51,5 @@ spec = do
   describe "group" $ do
     it "should render an SVG group" $ do
       let content = ["<foo />", "<bar />"]
-          expected = "<g >\n  <foo />\n<bar />\n</g>"
+          expected = "<g >\n  <foo />\n  <bar />\n</g>"
       Primitives.group content [] groupTemplate `shouldBe` expected
