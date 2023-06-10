@@ -38,6 +38,7 @@
             haskellPackages.hspec-discover
             ghcid
             cabal-install
+            cloc
           ];
           inputsFrom = map (__getAttr "env") (__attrValues self.packages.${system});
         };

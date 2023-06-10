@@ -3,6 +3,7 @@ module Graphic.Svg.Primitives where
 import Data.Text (Text)
 import Data.Text qualified as T (intercalate, pack, replace, unpack)
 import Geom2d.Circle
+import Geom2d.Nums (R)
 import Geom2d.Point
 import Geom2d.Polygon
 import Geom2d.Rect
@@ -10,6 +11,17 @@ import Geom2d.Segment
 import Geom2d.Size
 import Geom2d.Vector
 import Graphic.Svg.Attributes (attrsToStr)
+
+data Template = Template
+  { _segment :: String,
+    _rectangle :: String,
+    _circle :: String,
+    _polygon :: String,
+    _polyline :: String,
+    _text :: String,
+    _group :: String
+  }
+  deriving (Show)
 
 segment :: Segment -> [String] -> String -> String
 segment seg attributes template =
@@ -88,3 +100,15 @@ group primitives attributes template =
             (T.pack $ attrsToStr attributes)
           $ T.pack template
    in T.unpack replacedTemplate
+
+arrow :: Segment -> R -> R -> [String] -> Template -> String
+arrow seg arrowLength height attributes templates =
+  let director = directionVector seg
+      v_l = withLength arrowLength (opposite director)
+      v_h1 = withLength (height / 2.0) (perpendicular director)
+      v_h2 = opposite v_h1
+      p1 = displaced 1 (v_l ^+^ v_h1) seg.end
+      p2 = seg.end
+      p3 = displaced 1 (v_l ^+^ v_h2) seg.end
+      poly = polyline [p1, p2, p3] [] templates._polyline
+   in group [segment seg [] templates._segment, poly] attributes templates._group
