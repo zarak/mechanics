@@ -61,6 +61,8 @@ executable circle-from-points
     build-depends:    base ^>=4.16.4.0,
                       hardcore-programming-mechanical-engineers, 
                       megaparsec,
+                      text-manipulate,
+                      text,
                       dhall
     hs-source-dirs:   app/CircleFromPoints
     default-language: GHC2021

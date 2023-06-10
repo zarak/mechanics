@@ -4,6 +4,8 @@
 
 module Input where
 
+import Data.Text qualified as T
+import Data.Text.Manipulate
 import Data.Void
 import Dhall
 import Geom2d.Nums (R)
@@ -25,7 +27,17 @@ data InputOutput = InputOutput
     labelSize :: Natural,
     fontFamily :: String
   }
-  deriving (Show, Generic, FromDhall)
+  deriving (Show, Generic)
+
+instance FromDhall InputOutput where
+  autoWith _ =
+    genericAutoWith
+      defaultInterpretOptions
+        { fieldModifier = toSpinal
+        }
+
+readConfig :: IO Config
+readConfig = inputFile auto "app/CircleFromPoints/config.dhall"
 
 pInt :: Parsec Void String R
 pInt = L.decimal
