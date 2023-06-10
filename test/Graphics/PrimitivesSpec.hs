@@ -16,7 +16,7 @@ spec = do
       rectTemplate = "<rect x=\"{{x}}\" y=\"{{y}}\" width=\"{{width}}\" height=\"{{height}}\" {{attrs}}/>"
       circTemplate = "<circle cx=\"{{cx}}\" cy=\"{{cy}}\" r=\"{{r}}\" {{attrs}}/>"
       polTemplate = "<polygon points=\"{{points}}\" {{attrs}}/>"
-      textTemplate = "<text x=\"{{x}}\" y=\"{{y}}\" dx=\"{{dx}}\" dy=\"{{dy}}\" {{attrs}}> {{text}} </text>"
+      textTemplate = "<text x=\"{{x}}\" y=\"{{y}}\" dx=\"{{dx}}\" dy=\"{{dy}}\" {{attrs}}>\n  {{text}}\n</text>"
   describe "segment" $ do
     it "should render an SVG segment" $ do
       let segment = Segment (Point 2 3) (Point 4 5)
@@ -42,5 +42,5 @@ spec = do
   describe "text" $ do
     it "should render an SVG text object" $ do
       let txt = "Hello, SVG"
-          expected = "<text x=\"10.0\" y=\"15.0\" dx=\"5.0\" dy=\"6.0\" > Hello, SVG </text>"
+          expected = "<text x=\"10.0\" y=\"15.0\" dx=\"5.0\" dy=\"6.0\" >\n  Hello, SVG\n</text>"
       Primitives.text txt (Point 10 15) (Vector 5 6) [] textTemplate `shouldBe` expected
