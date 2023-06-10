@@ -59,6 +59,7 @@ executable circle-from-points
     import:           warnings
     main-is:          Main.hs
     other-modules:    Input
+                    , Output
     build-depends:    base ^>=4.16.4.0,
                       hardcore-programming-mechanical-engineers, 
                       megaparsec,
