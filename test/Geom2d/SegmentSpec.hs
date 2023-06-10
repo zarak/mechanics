@@ -29,6 +29,12 @@ spec = do
     it "gets the midpoint of a segment" $ do
       let expected = Point 200 200
       middle segment `shouldBe` expected
+    it "gets another midpoint of a segment" $ do
+      let s1 = Point 40 10
+          s2 = Point 60 10
+          seg1 = Segment s1 s2
+          expected = Point 50 10
+      middle seg1 `shouldBe` expected
   describe "closestPoint" $ do
     context "when the outside point is unaligned with the segment" $ do
       it "is the start of the segment" $ do
@@ -52,3 +58,8 @@ spec = do
       let other = Segment (Point 0 0) (Point 400 400)
           expected = Point 200 200
       segment `intersectionWith` other `shouldBe` pure expected
+    it "returns another point when there is an intersection" $ do
+      let self = Segment (Point 300 300) (Point 700 400)
+          other = Segment (Point 700 400) (Point 300 500)
+          expected = Point 451.49 400
+      other `intersectionWith` self `shouldBe` pure expected

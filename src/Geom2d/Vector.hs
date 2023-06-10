@@ -1,5 +1,6 @@
 module Geom2d.Vector where
 
+import Debug.Trace (trace)
 import Geom2d.Nums
 import Geom2d.Point
 import Numeric.IEEE
@@ -37,7 +38,7 @@ scaledBy factor (Vector u v) = Vector (factor * u) (factor * v)
 displaced :: R -> Vector -> Point -> Point
 displaced times vector (Point x y) =
   let scaledVec = scaledBy times vector
-   in Point (x + scaledVec.u) (y + scaledVec.v)
+   in trace ("displaced point: " <> show (x + scaledVec.u)) (Point (x + scaledVec.u) (y + scaledVec.v))
 
 -- Properties
 norm :: Vector -> R

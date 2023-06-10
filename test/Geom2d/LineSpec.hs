@@ -17,3 +17,8 @@ spec = do
           l2 = Line (Point 0 30) (Vector 1 0)
           expected = Point 50 30
       l1 `intersectionWith` l2 `shouldBe` pure expected
+    it "returns another point of intersection of nonparallel lines" $ do
+      let l1 = Line (Point 500 350) (Vector -0.9701425001453318 0.24253562503633294)
+          l2 = Line (Point 500 450) (Vector 0.9701425001453318 0.24253562503633294)
+          expected = Point 451.49 400
+      l1 `intersectionWith` l2 `shouldBe` pure expected

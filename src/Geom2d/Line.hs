@@ -1,5 +1,6 @@
 module Geom2d.Line where
 
+import Debug.Trace (trace)
 import Geom2d.Point (Point)
 import Geom2d.Vector (Vector (..), cross, displaced, perpendicular)
 import Geom2d.Vector qualified as Vector (isParallelTo, isPerpendicularTo)
@@ -28,7 +29,7 @@ parallelThrough p line =
 intersectionWith :: Line -> Line -> Maybe Point
 intersectionWith l1 l2
   | l1 `isParallelTo` l2 = Nothing
-  | otherwise = pure $ displaced t1 d1 l1.base
+  | otherwise = pure $ trace ("INTERSECTIONWITH : displaced called with: " <> show t1 <> " " <> show d1 <> " " <> show l1.base) (displaced t1 d1 l1.base)
   where
     d1 = l1.direction
     d2 = l2.direction
