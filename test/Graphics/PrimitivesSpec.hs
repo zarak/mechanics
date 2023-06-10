@@ -25,17 +25,20 @@ spec = do
     it "should render an SVG segment" $ do
       let segment = Segment (Point 2 3) (Point 4 5)
           expected = "<line x1=\"2.0\" y1=\"3.0\" x2=\"4.0\" y2=\"5.0\" />"
-      Primitives.segment segment [] lineTemplate `shouldBe` expected
+          actual = Primitives.segment segment [] lineTemplate
+      actual `shouldBe` expected
   describe "rectangle" $ do
     it "should render an SVG rectangle" $ do
       let rect = Rect (Point 2 3) (Size 4 5)
           expected = "<rect x=\"2.0\" y=\"3.0\" width=\"4.0\" height=\"5.0\" />"
-      Primitives.rectangle rect [] rectTemplate `shouldBe` expected
+          actual = Primitives.rectangle rect [] rectTemplate
+      actual `shouldBe` expected
   describe "circle" $ do
     it "should render an SVG circle" $ do
       let circle = Circle (Point 1 2) 5
           expected = "<circle cx=\"1.0\" cy=\"2.0\" r=\"5.0\" />"
-      Primitives.circle circle [] circTemplate `shouldBe` expected
+          actual = Primitives.circle circle [] circTemplate
+      actual `shouldBe` expected
   describe "polygon" $ do
     it "should render an SVG polygon" $ do
       let actual = do
@@ -47,9 +50,11 @@ spec = do
     it "should render an SVG text object" $ do
       let txt = "Hello, SVG"
           expected = "<text x=\"10.0\" y=\"15.0\" dx=\"5.0\" dy=\"6.0\" >\n  Hello, SVG\n</text>"
-      Primitives.text txt (Point 10 15) (Vector 5 6) [] textTemplate `shouldBe` expected
+          actual = Primitives.text txt (Point 10 15) (Vector 5 6) [] textTemplate
+      actual `shouldBe` expected
   describe "group" $ do
     it "should render an SVG group" $ do
       let content = ["<foo />", "<bar />"]
           expected = "<g >\n  <foo />\n  <bar />\n</g>"
-      Primitives.group content [] groupTemplate `shouldBe` expected
+          actual = Primitives.group content [] groupTemplate
+      actual `shouldBe` expected
