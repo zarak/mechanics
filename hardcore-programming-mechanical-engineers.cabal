@@ -56,11 +56,10 @@ library
 
 executable circle-from-points
     import:           warnings
-    main-is:          CircleFromPoints.hs
-    ghc-options:      -main-is CircleFromPoints
+    main-is:          Main.hs
     build-depends:    base ^>=4.16.4.0,
                       hardcore-programming-mechanical-engineers
-    hs-source-dirs:   app
+    hs-source-dirs:   app/CircleFromPoints
     default-language: GHC2021
 
 executable hardcore-programming-mechanical-engineers
