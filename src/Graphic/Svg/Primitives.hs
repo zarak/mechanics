@@ -1,8 +1,9 @@
 module Graphic.Svg.Primitives where
 
-import Data.Text qualified as T (pack, replace, unpack)
+import Data.Text qualified as T (intercalate, pack, replace, unpack)
 import Geom2d.Circle
 import Geom2d.Point
+import Geom2d.Polygon
 import Geom2d.Rect
 import Geom2d.Segment
 import Geom2d.Size
@@ -38,4 +39,16 @@ circle circ attributes template =
           . T.replace "{{r}}" (T.pack $ show circ.radius)
           . T.replace "{{attrs}}" (T.pack $ attrsToStr attributes)
           $ T.pack template
+   in T.unpack replacedTemplate
+
+polygon :: Polygon -> [String] -> String -> String
+polygon pol attributes template =
+  let replacedTemplate =
+        T.replace "{{points}}" (formatPoints pol.vertices)
+          . T.replace "{{attrs}}" (T.pack $ attrsToStr attributes)
+          $ T.pack template
+      formatPoints points =
+        T.intercalate
+          " "
+          [T.pack (show p.x) <> "," <> T.pack (show p.y) | p <- points]
    in T.unpack replacedTemplate
