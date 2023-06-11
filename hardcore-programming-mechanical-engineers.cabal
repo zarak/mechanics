@@ -42,6 +42,7 @@ library
                     , Graphic.Svg.Image
                     , Graphic.Svg.Primitives
                     , Graphic.Svg.Attributes
+                    , Graphic.Simulation.Draw
                     , Utils.Pairs
     -- other-modules:
     default-extensions: OverloadedRecordDot 

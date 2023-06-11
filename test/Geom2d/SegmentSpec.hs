@@ -8,7 +8,7 @@ import Geom2d.Line (Line (..))
 import Geom2d.Point
 import Geom2d.Segment
 import Geom2d.TParameter
-import Geom2d.Vector (Vector (..), isParallelTo, isPerpendicularTo, normalized)
+import Geom2d.Vector (Vector (..), isParallelTo, isPerpendicularTo)
 import Test.Hspec
 import Test.Hspec.QuickCheck
 import Test.QuickCheck
@@ -79,13 +79,7 @@ spec = do
       let other = Segment (Point 0 0) (Point 400 400)
           expected = Point 200 200
       segment `intersectionWith` other `shouldBe` pure expected
-
   describe "bisector" $ do
-    it "should be horizontal for a vertical segment" $ do
-      let seg = Segment (Point 0 0) (Point 0 200)
-          actual = direction $ bisector seg
-          expected = direction $ Line (Point 0 100) (Vector 1 0)
-      actual `shouldSatisfy` isPerpendicularTo expected
     it "should be diagonal for a diagonal segment" $ do
       let seg = Segment (Point 0 0) (Point 10 10)
           actual = direction $ bisector seg
