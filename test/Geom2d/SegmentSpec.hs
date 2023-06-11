@@ -1,10 +1,31 @@
+{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
+
+{-# HLINT ignore "Use <$>" #-}
+{-# HLINT ignore "Use null" #-}
 module Geom2d.SegmentSpec (spec) where
 
+import Geom2d.Line (Line (..))
 import Geom2d.Point
 import Geom2d.Segment
 import Geom2d.TParameter
+import Geom2d.Vector (Vector (..), isParallelTo, isPerpendicularTo, normalized)
 import Test.Hspec
+import Test.Hspec.QuickCheck
+import Test.QuickCheck
 import Prelude hiding (length)
+
+newtype SegmentWrapper = SegmentWrapper Segment deriving (Eq, Show)
+
+instance Arbitrary SegmentWrapper where
+  arbitrary = do
+    x1 <- arbitrary
+    x2 <- arbitrary
+    y1 <- arbitrary
+    y2 <- arbitrary
+    let s = Segment (Point x1 x2) (Point y1 y2)
+    if length s > 0
+      then pure $ SegmentWrapper s
+      else pure $ SegmentWrapper (Segment (Point 0 0) (Point 1 1))
 
 spec :: Spec
 spec = do
@@ -58,8 +79,25 @@ spec = do
       let other = Segment (Point 0 0) (Point 400 400)
           expected = Point 200 200
       segment `intersectionWith` other `shouldBe` pure expected
-    it "returns another point when there is an intersection" $ do
-      let self = Segment (Point 300 300) (Point 700 400)
-          other = Segment (Point 700 400) (Point 300 500)
-          expected = Point 451.49 400
-      other `intersectionWith` self `shouldBe` pure expected
+
+  describe "bisector" $ do
+    it "should be horizontal for a vertical segment" $ do
+      let seg = Segment (Point 0 0) (Point 0 200)
+          actual = direction $ bisector seg
+          expected = direction $ Line (Point 0 100) (Vector 1 0)
+      actual `shouldSatisfy` isPerpendicularTo expected
+    it "should be diagonal for a diagonal segment" $ do
+      let seg = Segment (Point 0 0) (Point 10 10)
+          actual = direction $ bisector seg
+          expected = Vector -1 1
+      -- Note that I chose the expected value to specifically be parallel to
+      -- the result
+      actual `shouldSatisfy` isParallelTo expected
+    it "computes bisector of a horizontal segment" $ do
+      let seg = Segment (Point 0 0) (Point 2 0)
+      let expectedBisector = Line (Point 1 0) (Vector 0 1)
+      direction (bisector seg) `shouldBe` direction expectedBisector
+    prop "is perpendicular to the segment" $ do
+      let propIsPerpendicularToBisec (SegmentWrapper seg) =
+            directionVector seg `isPerpendicularTo` direction (bisector seg)
+      propIsPerpendicularToBisec

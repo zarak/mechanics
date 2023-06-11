@@ -66,7 +66,7 @@ isParallelTo :: Vector -> Vector -> Bool
 isParallelTo v1 = isCloseToZero . cross v1
 
 isPerpendicularTo :: Vector -> Vector -> Bool
-isPerpendicularTo v1 = isCloseToZero . dot v1
+isPerpendicularTo v = isCloseToZero . dot v
 
 -- | `angleValueBetween` computes \( \theta \)
 -- \[
@@ -98,7 +98,7 @@ rotatedRadians radians vector =
         (vector.u * s + vector.v * c)
 
 perpendicular :: Vector -> Vector
-perpendicular (Vector v u) = Vector (-v) u
+perpendicular (Vector u v) = Vector (-v) u
 
 opposite :: Vector -> Vector
 opposite = scaledBy (-1)
