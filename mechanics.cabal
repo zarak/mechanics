@@ -1,5 +1,5 @@
 cabal-version:      3.0
-name:               hardcore-programming-mechanical-engineers
+name:               mechanics
 version:            0.1.0.0
 -- synopsis:
 -- description:
@@ -62,7 +62,7 @@ executable circle-from-points
     other-modules:    Input
                     , Output
     build-depends:    base ^>=4.16.4.0,
-                      hardcore-programming-mechanical-engineers, 
+                      mechanics, 
                       megaparsec,
                       text-manipulate,
                       text,
@@ -70,19 +70,19 @@ executable circle-from-points
     hs-source-dirs:   app/CircleFromPoints
     default-language: GHC2021
 
-executable hardcore-programming-mechanical-engineers
+executable mechanics
     import:           warnings
     main-is:          Main.hs
     -- other-modules:
     -- other-extensions:
     build-depends:
         base ^>=4.16.4.0,
-        hardcore-programming-mechanical-engineers
+        mechanics
 
     hs-source-dirs:   app
     default-language: GHC2021
 
-test-suite hardcore-programming-mechanical-engineers-test
+test-suite mechanics-test
     import:           warnings
     default-language: GHC2021
     other-modules:    Geom2d.PointSpec
@@ -106,7 +106,7 @@ test-suite hardcore-programming-mechanical-engineers-test
     main-is:          Spec.hs
     build-depends:
         base ^>=4.16.4.0,
-        hardcore-programming-mechanical-engineers,
+        mechanics,
         hspec,
         hspec-contrib,
         QuickCheck,

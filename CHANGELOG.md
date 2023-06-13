@@ -1,4 +1,4 @@
-# Revision history for hardcore-programming-mechanical-engineers
+# Revision history for mechanics
 
 ## 0.1.0.0 -- YYYY-mm-dd
 
