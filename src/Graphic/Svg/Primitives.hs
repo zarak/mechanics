@@ -36,6 +36,16 @@ textTemplate =
   {{text}} 
 </text>|]
 
+imgTemplate :: Text
+imgTemplate =
+  [r|<svg xmlns="http://www.w3.org/2000/svg" version="1.1" 
+  width="{{width}}" 
+  height="{{height}}" 
+  viewBox="{{viewBox}}" 
+  transform="matrix({{transf}})"> 
+  {{content}} 
+</svg>|]
+
 groupTemplate :: Text
 groupTemplate =
   [r|<g {{attrs}}>

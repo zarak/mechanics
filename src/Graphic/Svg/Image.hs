@@ -8,6 +8,7 @@ import Geom2d.AffineTransf
 import Geom2d.Point
 import Geom2d.Rect
 import Geom2d.Size
+import Graphic.Svg.Primitives (imgTemplate)
 
 defaultViewboxRect :: Size -> Rect
 defaultViewboxRect = Rect mempty
@@ -33,11 +34,10 @@ transfMatrixVals t =
 svgContent ::
   Size ->
   [String] ->
-  String ->
   Maybe Rect ->
   Maybe AffineTransform ->
   String
-svgContent size primitives template viewboxRect transform = do
+svgContent size primitives viewboxRect transform = do
   let viewboxRect' = fromMaybe (defaultViewboxRect size) viewboxRect
       transform' = fromMaybe defaultTransf transform
       replacedTemplate =
@@ -46,5 +46,5 @@ svgContent size primitives template viewboxRect transform = do
           . T.replace "{{content}}" (T.pack $ unlines primitives)
           . T.replace "{{viewBox}}" (T.pack $ viewboxFromRect viewboxRect')
           . T.replace "{{transf}}" (T.pack $ transfMatrixVals transform')
-          $ T.pack template
+          $ imgTemplate
    in T.unpack replacedTemplate

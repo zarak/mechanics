@@ -10,27 +10,26 @@ import Geom2d.Rects (mkRectCentered)
 import Geom2d.Vector
 import Graphic.Svg.Attributes qualified as A
 import Graphic.Svg.Image (svgContent)
-import Graphic.Svg.Primitives (Template)
 import Graphic.Svg.Primitives qualified as P
 import Input
 
-drawToSvg :: [Point] -> Circle -> Config -> Template -> IO ()
-drawToSvg points circle config templates = do
+drawToSvg :: [Point] -> Circle -> Config -> IO ()
+drawToSvg points circle config = do
   let ptRadius = circle.radius / 20
-      svgOutput = outputToSvg circle config.output templates
-      svgInput = inputToSvg points ptRadius config.input templates
+      svgOutput = outputToSvg circle config.output
+      svgInput = inputToSvg points ptRadius config.input
       viewbox = mkViewbox circle
 
-      svgImg = svgContent viewbox.size (svgOutput <> svgInput) templates._img (Just viewbox) Nothing
+      svgImg = svgContent viewbox.size (svgOutput <> svgInput) (Just viewbox) Nothing
   putStr svgImg
 
-outputToSvg :: Circle -> InputOutput -> Template -> [String]
-outputToSvg circle config templates =
+outputToSvg :: Circle -> InputOutput -> [String]
+outputToSvg circle config =
   let style = styleFromConfig config
       labelStyle = labelStyleFromConfig config
-   in [ P.circle circle style templates._circle,
-        P.text ("0 " <> show circle.center) circle.center (Vector 0 0) labelStyle templates._text,
-        P.text ("r " <> show circle.radius) circle.center (Vector 0 20) labelStyle templates._text
+   in [ P.circle circle style,
+        P.text ("0 " <> show circle.center) circle.center (Vector 0 0) labelStyle,
+        P.text ("r " <> show circle.radius) circle.center (Vector 0 20) labelStyle
       ]
 
 mkViewbox :: Circle -> Rect
@@ -53,16 +52,16 @@ labelStyleFromConfig config =
     A.fillColor config.strokeColor
   ]
 
-inputToSvg :: [Point] -> R -> InputOutput -> Template -> [String]
-inputToSvg points pointRadius config templates =
+inputToSvg :: [Point] -> R -> InputOutput -> [String]
+inputToSvg points pointRadius config =
   let style = styleFromConfig config
       labelStyle = labelStyleFromConfig config
       [a, b, c] = points
       disp = Vector (1.25 * pointRadius) 0
-   in [ P.circle (Circle a pointRadius) style templates._circle,
-        P.circle (Circle b pointRadius) style templates._circle,
-        P.circle (Circle c pointRadius) style templates._circle,
-        P.text ("A " <> show a) a disp labelStyle templates._text,
-        P.text ("B " <> show b) b disp labelStyle templates._text,
-        P.text ("C " <> show c) c disp labelStyle templates._text
+   in [ P.circle (Circle a pointRadius) style,
+        P.circle (Circle b pointRadius) style,
+        P.circle (Circle c pointRadius) style,
+        P.text ("A " <> show a) a disp labelStyle,
+        P.text ("B " <> show b) b disp labelStyle,
+        P.text ("C " <> show c) c disp labelStyle
       ]
