@@ -111,5 +111,6 @@ test-suite mechanics-test
         hspec,
         hspec-contrib,
         QuickCheck,
-        test-invariant
+        test-invariant,
+        raw-strings-qq
 
