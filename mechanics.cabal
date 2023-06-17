@@ -53,6 +53,7 @@ library
                     , text
                     , bytestring
                     , directory
+                    , raw-strings-qq
     hs-source-dirs:   src
     default-language: GHC2021
 
