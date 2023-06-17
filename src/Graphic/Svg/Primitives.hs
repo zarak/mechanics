@@ -32,8 +32,8 @@ polylineTemplate = [r|<polyline points="{{points}}" {{attrs}}/>|]
 
 textTemplate :: Text
 textTemplate =
-  [r|<text x="10.0" y="15.0" dx="5.0" dy="6.0" >
-  Hello, SVG
+  [r|<text x="{{x}}" y="{{y}}" dx="{{dx}}" dy="{{dy}}" {{attrs}}> 
+  {{text}} 
 </text>|]
 
 imgTemplate :: Text
